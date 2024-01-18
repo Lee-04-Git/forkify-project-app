@@ -10,11 +10,6 @@ import addRecipeView from './js/views/addRecipeView.js';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-// from parcel
-// if(module.hot) {
-//   module.hot.accept();
-// }
-
 const controlRecipes = async function() {
   try {
     const id = window.location.hash.slice(1);
@@ -42,8 +37,6 @@ const controlRecipes = async function() {
 
 const controlSearchResults = async function() {
   try {
-    // resultsView.renderSpinner();
-    // console.log(resultsView);
     // 1) Get search query
     const query = searchView.getQuery();
 
@@ -58,8 +51,7 @@ const controlSearchResults = async function() {
     
     console.log("search query res: ", res);
 
-   // 3) Render results
-  // resultsView.render(model.state.search.results);
+   // 3) Render result
     resultsView.render(model.getSearchResultsPage());
 
     // 4) Render initial pagination buttons
@@ -83,7 +75,6 @@ const controlServings = function (newServings) {
   model.updateServings(newServings);
 
   // Update the recipe view - the view that will be impacted controlling thee recipe servings
-  // recipeView.render(model.state.recipe);
   // update method updates texts and attributes in the DOM
   recipeView.update(model.state.recipe);
 };
@@ -124,7 +115,6 @@ const controlAddRecipe = async function(newRecipe) {
 
     // Change ID in URL
     window.history.pushState(null, '', `#${model.state.recipe.id}`);
-    // window.history.back()
 
     // Close form window
     setTimeout(function() {
